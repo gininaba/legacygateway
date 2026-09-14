@@ -16,6 +16,7 @@ export function sidFromReq(req: Request): string | null {
 /** Fetch the session row, creating it on first use. */
 export async function ensureSession(sid: string) {
   try {
+    if (!db) return null;
     const rows = await db.select().from(sessions).where(eq(sessions.id, sid)).limit(1);
     if (rows.length) return rows[0];
     await db
@@ -25,7 +26,7 @@ export async function ensureSession(sid: string) {
     const retry = await db.select().from(sessions).where(eq(sessions.id, sid)).limit(1);
     return retry[0] || null;
   } catch {
-    return null; // DB unavailable → degrade to stateless browsing
+    return null; // DB unavailable -> degrade to stateless browsing
   }
 }
 

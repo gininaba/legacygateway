@@ -282,23 +282,52 @@ async function handle(req: NextRequest, ctx: { params: Promise<Params> }): Promi
   return new NextResponse(res.body, { status: res.status, headers: h });
 }
 
-export function GET(req: NextRequest, ctx: { params: Promise<Params> }) {
-  return handle(req, ctx);
+export async function GET(req: NextRequest, ctx: { params: Promise<Params> }) {
+  try {
+    return await handle(req, ctx);
+  } catch (e) {
+    const msg = (e as Error)?.message || String(e);
+    return errorPage(500, "Gateway Error", `An internal error occurred: <code>${escapeHtml(msg.slice(0, 300))}</code>`);
+  }
 }
-export function POST(req: NextRequest, ctx: { params: Promise<Params> }) {
-  return handle(req, ctx);
+export async function POST(req: NextRequest, ctx: { params: Promise<Params> }) {
+  try {
+    return await handle(req, ctx);
+  } catch (e) {
+    const msg = (e as Error)?.message || String(e);
+    return errorPage(500, "Gateway Error", `An internal error occurred: <code>${escapeHtml(msg.slice(0, 300))}</code>`);
+  }
 }
-export function PUT(req: NextRequest, ctx: { params: Promise<Params> }) {
-  return handle(req, ctx);
+export async function PUT(req: NextRequest, ctx: { params: Promise<Params> }) {
+  try {
+    return await handle(req, ctx);
+  } catch (e) {
+    const msg = (e as Error)?.message || String(e);
+    return errorPage(500, "Gateway Error", `An internal error occurred: <code>${escapeHtml(msg.slice(0, 300))}</code>`);
+  }
 }
-export function PATCH(req: NextRequest, ctx: { params: Promise<Params> }) {
-  return handle(req, ctx);
+export async function PATCH(req: NextRequest, ctx: { params: Promise<Params> }) {
+  try {
+    return await handle(req, ctx);
+  } catch (e) {
+    const msg = (e as Error)?.message || String(e);
+    return errorPage(500, "Gateway Error", `An internal error occurred: <code>${escapeHtml(msg.slice(0, 300))}</code>`);
+  }
 }
-export function DELETE(req: NextRequest, ctx: { params: Promise<Params> }) {
-  return handle(req, ctx);
+export async function DELETE(req: NextRequest, ctx: { params: Promise<Params> }) {
+  try {
+    return await handle(req, ctx);
+  } catch (e) {
+    const msg = (e as Error)?.message || String(e);
+    return errorPage(500, "Gateway Error", `An internal error occurred: <code>${escapeHtml(msg.slice(0, 300))}</code>`);
+  }
 }
-export function HEAD(req: NextRequest, ctx: { params: Promise<Params> }) {
-  return handle(req, ctx);
+export async function HEAD(req: NextRequest, ctx: { params: Promise<Params> }) {
+  try {
+    return await handle(req, ctx);
+  } catch (e) {
+    return new NextResponse(null, { status: 500 });
+  }
 }
 export function OPTIONS() {
   return new NextResponse(null, {

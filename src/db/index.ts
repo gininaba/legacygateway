@@ -3,22 +3,35 @@ import { Pool } from "pg";
 
 const databaseUrl = process.env.DATABASE_URL;
 
-if (!databaseUrl) {
-  throw new Error("DATABASE_URL is required");
-}
-
 const globalForDb = globalThis as typeof globalThis & {
   __arenaNextJsPostgresqlPool?: Pool;
 };
 
-export const pool =
-  globalForDb.__arenaNextJsPostgresqlPool ??
-  new Pool({
-    connectionString: databaseUrl,
-  });
+let poolInstance: Pool | null = null;
 
-if (process.env.NODE_ENV !== "production") {
-  globalForDb.__arenaNextJsPostgresqlPool = pool;
+if (databaseUrl) {
+  try {
+    const isCloudPg =
+      databaseUrl.includes("supabase") ||
+      databaseUrl.includes("neon") ||
+      databaseUrl.includes("vercel-storage") ||
+      databaseUrl.includes("pooler.supabase.com");
+
+    poolInstance =
+      globalForDb.__arenaNextJsPostgresqlPool ??
+      new Pool({
+        connectionString: databaseUrl,
+        ssl: isCloudPg ? { rejectUnauthorized: false } : undefined,
+        connectionTimeoutMillis: 5000,
+      });
+
+    if (process.env.NODE_ENV !== "production" && poolInstance) {
+      globalForDb.__arenaNextJsPostgresqlPool = poolInstance;
+    }
+  } catch (e) {
+    console.error("Database pool initialization warning:", e);
+  }
 }
 
-export const db = drizzle(pool);
+export const pool = poolInstance;
+export const db = pool ? drizzle(pool) : (null as unknown as ReturnType<typeof drizzle>);
