@@ -107,6 +107,8 @@ Open `http://localhost:3000` in your browser.
 4. Run `npx drizzle-kit push` against the target database.
 5. Deploy the application.
 
+> **Serverless Function Configuration**: `sharp` and `pg` are configured under `serverExternalPackages` in [`next.config.ts`](file:///Volumes/1TB%20Graphics%20SSD/AIPOS/legacy_gateway/next.config.ts) to prevent serverless bundling errors with native binaries on Vercel. JS rewriting uses asynchronous Babel transformations (`transformAsync`) to avoid blocking the serverless event loop.
+
 > **iOS 9 Reachability Note**: For physical iOS 9 devices, serve the gateway over plain HTTP or use a custom domain with an SSL certificate chain trusted by legacy iOS 9 trust stores (e.g., avoiding Let's Encrypt certificates if ISRG Root X1 is uninstalled on the device). The upstream connection from the gateway to destination web servers always uses modern TLS 1.3 with full certificate validation.
 
 ---

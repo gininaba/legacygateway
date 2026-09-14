@@ -1,4 +1,4 @@
-import { transformSync } from "@babel/core";
+import { transformAsync } from "@babel/core";
 import { eq } from "drizzle-orm";
 import { db } from "@/db";
 import { cache } from "@/db/schema";
@@ -26,7 +26,10 @@ export async function transpileJs(code: string, keyHint: string): Promise<string
 
   let out = code;
   try {
-    const result = transformSync(code, {
+    // transformAsync is the explicit Promise-based API in Babel 8.
+    // (transform() became callback-based in Babel 8; transformSync still
+    // exists but blocks the event loop on large files.)
+    const result = await transformAsync(code, {
       presets: [
         [
           "@babel/preset-env",
