@@ -1,8 +1,8 @@
 /* -------------------------------------------------------------------------
-   Legacy Gateway — chrome styles.
-   STRICTLY iOS 9.3 WebKit-safe CSS: no grid, no custom properties, no calc,
-   no vw units, no flexbox-only layout. Layout uses block / inline-block /
-   floats so it renders identically on 2015 WebKit and modern engines.
+   Legacy Gateway — iOS 9.3 WebKit-safe Dark UI (Surf Repository / Cydia style).
+   STRICTLY iOS 9.3 WebKit-safe CSS: no grid, no CSS custom properties (var),
+   no calc(), no vw/vh units.
+   Layout uses block / inline-block / floats for 100% fidelity on 2015 WebKit.
    ------------------------------------------------------------------------- */
 
 html {
@@ -11,75 +11,92 @@ html {
 
 body {
   margin: 0;
-  background: #0b1020;
-  color: #1f2937;
+  background: #121214;
+  color: #e5e5ea;
   font-family: -apple-system, "Helvetica Neue", Helvetica, Arial, sans-serif;
 }
 
 .lg-page {
   min-height: 600px;
-  background: #f6f7f9;
+  background: #121214;
   padding-bottom: 80px;
 }
 
-/* ---- top band ---- */
+/* ---- iOS 9 glossy / dark navigation bar ---- */
 .lg-top {
-  background: #0b1020;
-  background: -webkit-linear-gradient(160deg, #0b1020 0%, #141b34 55%, #1d2748 100%);
-  background: linear-gradient(160deg, #0b1020 0%, #141b34 55%, #1d2748 100%);
-  border-bottom: 3px solid #f5b730;
-  color: #e5e7eb;
-  padding: 26px 24px 30px;
+  background: #1c1c1e;
+  background: -webkit-linear-gradient(top, #2c2c2e 0%, #1c1c1e 100%);
+  background: linear-gradient(to bottom, #2c2c2e 0%, #1c1c1e 100%);
+  border-bottom: 1px solid #3a3a3c;
+  color: #ffffff;
+  padding: 16px 20px;
 }
 
 .lg-top-slim {
-  padding: 12px 24px;
+  padding: 10px 20px;
 }
 
 .lg-brand {
   margin: 0;
-  font-family: Georgia, "Times New Roman", serif;
-  font-size: 30px;
-  font-weight: normal;
-  letter-spacing: 0.5px;
-  color: #fff;
+  font-family: -apple-system, "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-size: 22px;
+  font-weight: 700;
+  letter-spacing: -0.3px;
+  color: #ffffff;
+  float: left;
 }
 
-.lg-brand b { color: #f5b730; font-weight: bold; }
+.lg-brand b {
+  color: #0a84ff;
+  font-weight: 700;
+}
 
-.lg-brand a { color: #fff; text-decoration: none; }
+.lg-brand a {
+  color: #ffffff;
+  text-decoration: none;
+}
 
 .lg-tag {
-  margin: 8px 0 0;
-  color: #9aa4bf;
-  font-size: 14px;
-  max-width: 46em;
-  line-height: 1.5;
+  margin: 10px 0 0;
+  color: #8e8e93;
+  font-size: 13px;
+  max-width: 52em;
+  line-height: 1.45;
+  clear: both;
+  padding-top: 6px;
 }
 
 .lg-nav {
   float: right;
-  margin-top: 6px;
+  margin-top: 2px;
 }
 
 .lg-nav a, .lg-nav .lg-chip {
   display: inline-block;
-  margin-left: 8px;
-  padding: 8px 14px;
-  border: 1px solid #39415f;
-  border-radius: 999px;
-  color: #c7ceed;
-  font-size: 14px;
+  margin-left: 6px;
+  padding: 6px 12px;
+  border: 1px solid #3a3a3c;
+  border-radius: 8px;
+  background: #2c2c2e;
+  color: #0a84ff;
+  font-size: 13px;
+  font-weight: 600;
   text-decoration: none;
 }
 
-.lg-nav a:hover { border-color: #f5b730; color: #f5b730; }
+.lg-nav a:hover, .lg-nav a.active {
+  background: #0a84ff;
+  border-color: #0a84ff;
+  color: #ffffff;
+}
 
-.lg-clear { clear: both; }
+.lg-clear {
+  clear: both;
+}
 
-/* ---- url bar ---- */
+/* ---- URL Bar / Search ---- */
 .lg-urlbar {
-  margin: 22px auto 0;
+  margin: 16px auto 0;
   max-width: 720px;
 }
 
@@ -88,144 +105,209 @@ body {
   width: 100%;
   -webkit-box-sizing: border-box;
   box-sizing: border-box;
-  font-size: 22px;
-  padding: 16px 18px;
-  border: 2px solid #39415f;
+  font-size: 17px;
+  padding: 14px 16px;
+  border: 1px solid #3a3a3c;
   border-radius: 12px;
-  background: #fff;
-  color: #111;
+  background: #1c1c1e;
+  color: #ffffff;
   -webkit-appearance: none;
   outline: none;
 }
 
+.lg-urlbar .lg-in:focus {
+  border-color: #0a84ff;
+}
+
 .lg-row {
-  margin-top: 12px;
+  margin-top: 10px;
   text-align: center;
 }
 
 .lg-btn {
   display: inline-block;
-  font-size: 18px;
-  padding: 12px 22px;
+  font-size: 16px;
+  padding: 10px 20px;
   border: 0;
   border-radius: 10px;
-  background: #f5b730;
-  color: #221a05;
-  font-weight: bold;
+  background: #0a84ff;
+  color: #ffffff;
+  font-weight: 600;
   text-decoration: none;
   cursor: pointer;
   -webkit-appearance: none;
 }
 
-.lg-btn:active { background: #d99e1e; }
+.lg-btn:active {
+  background: #0066cc;
+}
 
-.lg-btn-blue { background: #0b5bd3; color: #fff; }
+.lg-btn-blue {
+  background: #0a84ff;
+  color: #ffffff;
+}
 
 .lg-sel {
-  font-size: 16px;
-  padding: 10px;
-  border-radius: 8px;
-  border: 1px solid #39415f;
-  background: #fff;
+  font-size: 15px;
+  padding: 10px 12px;
+  border-radius: 10px;
+  border: 1px solid #3a3a3c;
+  background: #1c1c1e;
+  color: #0a84ff;
+  font-weight: 600;
   margin-left: 8px;
   -webkit-appearance: menulist;
 }
 
 .lg-hint {
-  color: #8d96b2;
+  color: #8e8e93;
   font-size: 13px;
-  margin-top: 10px;
+  margin-top: 8px;
   text-align: center;
 }
 
-/* ---- content ---- */
+/* ---- Content Container ---- */
 .lg-wrap {
   max-width: 760px;
-  margin: 26px auto 0;
-  padding: 0 18px;
+  margin: 20px auto 0;
+  padding: 0 16px;
 }
 
+/* ---- Grouped Section Headers (iOS Style) ---- */
 .lg-h2 {
-  font-family: Georgia, serif;
-  font-size: 22px;
-  color: #111827;
-  border-bottom: 1px solid #e5e7eb;
-  padding-bottom: 8px;
-  margin: 28px 0 14px;
+  font-family: -apple-system, "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-size: 12px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.8px;
+  color: #8e8e93;
+  border-bottom: none;
+  padding-bottom: 0;
+  margin: 24px 8px 8px;
 }
 
+/* ---- iOS Grouped Cards / Lists ---- */
 .lg-cards {
-  margin: 0 -6px;
-  font-size: 0; /* kill inline-block whitespace */
+  margin: 0;
+  background: #1c1c1e;
+  border: 1px solid #2c2c2e;
+  border-radius: 12px;
+  overflow: hidden;
 }
 
 .lg-card {
-  display: inline-block;
-  vertical-align: top;
-  width: 29.33%;
-  margin: 6px 1%;
+  display: block;
   -webkit-box-sizing: border-box;
   box-sizing: border-box;
-  background: #fff;
-  border: 1px solid #e5e7eb;
-  border-radius: 10px;
+  background: #1c1c1e;
+  border-bottom: 1px solid #2c2c2e;
   padding: 14px 16px;
   font-size: 15px;
   text-decoration: none;
-  color: #111827;
-  -webkit-box-shadow: 0 1px 2px rgba(16, 24, 40, 0.06);
-  box-shadow: 0 1px 2px rgba(16, 24, 40, 0.06);
+  color: #ffffff;
+  position: relative;
 }
 
-.lg-card:hover { border-color: #f5b730; }
+.lg-card:last-child {
+  border-bottom: none;
+}
 
-.lg-card b { display: block; font-size: 16px; margin-bottom: 4px; color: #0b5bd3; }
-.lg-card span { color: #6b7280; font-size: 13px; line-height: 1.4; display: block; }
+.lg-card:active {
+  background: #2c2c2e;
+}
 
-.lg-card-wide { width: 96%; }
+.lg-card b {
+  display: block;
+  font-size: 16px;
+  font-weight: 600;
+  margin-bottom: 3px;
+  color: #ffffff;
+  padding-right: 20px;
+}
 
+.lg-card span {
+  color: #8e8e93;
+  font-size: 13px;
+  line-height: 1.4;
+  display: block;
+  padding-right: 20px;
+}
+
+/* Right Chevron (iOS List Arrow) */
+.lg-card::after {
+  content: "›";
+  position: absolute;
+  right: 16px;
+  top: 50%;
+  margin-top: -14px;
+  font-size: 22px;
+  font-weight: 400;
+  color: #636366;
+}
+
+.lg-card-wide {
+  width: 100%;
+}
+
+/* ---- Grouped Panels ---- */
 .lg-panel {
-  background: #fff;
-  border: 1px solid #e5e7eb;
-  border-radius: 10px;
+  background: #1c1c1e;
+  border: 1px solid #2c2c2e;
+  border-radius: 12px;
   padding: 18px 20px;
-  margin-bottom: 14px;
-  line-height: 1.6;
+  margin-bottom: 16px;
+  line-height: 1.55;
+  color: #e5e5ea;
 }
 
-.lg-panel h3 { margin-top: 0; }
+.lg-panel h3 {
+  margin-top: 0;
+  font-size: 17px;
+  font-weight: 600;
+  color: #ffffff;
+}
 
 .lg-note {
-  background: #fffbeb;
-  border: 1px solid #fcd34d;
-  border-radius: 8px;
-  padding: 10px 14px;
-  color: #92400e;
+  background: #2c2410;
+  border: 1px solid #6b5114;
+  border-radius: 10px;
+  padding: 12px 16px;
+  color: #ffd60a;
   font-size: 14px;
+  margin-bottom: 14px;
 }
 
-/* ---- forms (legacy-safe: block layout, no flex) ---- */
-.lg-form { margin: 0; }
+/* ---- Forms ---- */
+.lg-form {
+  margin: 0;
+}
 
 .lg-field {
   display: block;
   margin-bottom: 14px;
-  font-size: 16px;
+  font-size: 15px;
   line-height: 1.5;
+  color: #e5e5ea;
+}
+
+.lg-field b {
+  color: #ffffff;
 }
 
 .lg-field input[type="checkbox"], .lg-field input[type="radio"] {
-  width: 22px;
-  height: 22px;
-  vertical-align: -5px;
+  width: 20px;
+  height: 20px;
+  vertical-align: -3px;
   margin-right: 8px;
 }
 
 .lg-field select {
-  font-size: 16px;
+  font-size: 15px;
   padding: 8px;
   border-radius: 8px;
-  border: 1px solid #9ca3af;
+  border: 1px solid #3a3a3c;
+  background: #2c2c2e;
+  color: #0a84ff;
   margin-left: 8px;
   -webkit-appearance: menulist;
 }
@@ -234,62 +316,166 @@ body {
   width: 100%;
   -webkit-box-sizing: border-box;
   box-sizing: border-box;
-  font-size: 18px;
+  font-size: 16px;
   padding: 12px;
-  border: 1px solid #9ca3af;
-  border-radius: 8px;
+  border: 1px solid #3a3a3c;
+  border-radius: 10px;
+  background: #2c2c2e;
+  color: #ffffff;
   margin-top: 6px;
   -webkit-appearance: none;
 }
 
-/* ---- lists / tables ---- */
-.lg-list { list-style: none; margin: 0; padding: 0; }
-.lg-list li { border-bottom: 1px solid #eee; padding: 10px 2px; }
-.lg-list a { color: #0b5bd3; text-decoration: none; font-size: 17px; word-break: break-all; }
-.lg-list a:hover { text-decoration: underline; }
-.lg-list .lg-muted { color: #9ca3af; font-size: 13px; display: block; margin-top: 2px; }
-.lg-list form { display: inline; }
-.lg-linkbtn {
-  border: 0; background: none; color: #b91c1c; font-size: 14px; cursor: pointer;
-  padding: 4px 8px; text-decoration: underline; font-family: inherit;
+/* ---- Lists / Tables ---- */
+.lg-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  background: #1c1c1e;
+  border: 1px solid #2c2c2e;
+  border-radius: 12px;
+  overflow: hidden;
 }
-.lg-linkbtn-save { color: #065f46; }
 
-/* ---- type ---- */
-.lg-small { font-size: 13px; color: #6b7280; }
+.lg-list li {
+  border-bottom: 1px solid #2c2c2e;
+  padding: 12px 16px;
+}
+
+.lg-list li:last-child {
+  border-bottom: none;
+}
+
+.lg-list a {
+  color: #0a84ff;
+  text-decoration: none;
+  font-size: 16px;
+  font-weight: 500;
+  word-break: break-all;
+}
+
+.lg-list a:hover {
+  text-decoration: underline;
+}
+
+.lg-list .lg-muted {
+  color: #8e8e93;
+  font-size: 13px;
+  display: block;
+  margin-top: 3px;
+}
+
+.lg-list form {
+  display: inline;
+}
+
+.lg-linkbtn {
+  border: 0;
+  background: none;
+  color: #ff453a;
+  font-size: 14px;
+  cursor: pointer;
+  padding: 4px 8px;
+  text-decoration: underline;
+  font-family: inherit;
+}
+
+.lg-linkbtn-save {
+  color: #30d158;
+}
+
+/* ---- Type Utilities ---- */
+.lg-small {
+  font-size: 13px;
+  color: #8e8e93;
+}
+
 .lg-code {
   font-family: Menlo, Consolas, monospace;
-  background: #f3f4f6;
-  padding: 1px 5px;
-  border-radius: 4px;
+  background: #2c2c2e;
+  color: #30d158;
+  padding: 2px 6px;
+  border-radius: 6px;
   font-size: 13px;
   word-break: break-all;
 }
-.lg-ok { color: #047857; }
-.lg-bad { color: #b91c1c; }
-.lg-warn { color: #b45309; }
 
-.lg-hr { border: 0; border-top: 1px solid #e5e7eb; margin: 22px 0; }
+.lg-ok {
+  color: #30d158;
+}
 
-/* ---- about page matrix ---- */
-.lg-table { width: 100%; border-collapse: collapse; font-size: 14px; }
+.lg-bad {
+  color: #ff453a;
+}
+
+.lg-warn {
+  color: #ffd60a;
+}
+
+.lg-hr {
+  border: 0;
+  border-top: 1px solid #2c2c2e;
+  margin: 18px 0;
+}
+
+/* ---- Table Styles ---- */
+.lg-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 14px;
+  background: #1c1c1e;
+  border-radius: 10px;
+  overflow: hidden;
+}
+
 .lg-table th, .lg-table td {
-  border: 1px solid #e5e7eb;
+  border: 1px solid #2c2c2e;
   text-align: left;
-  padding: 8px 10px;
+  padding: 10px 12px;
   vertical-align: top;
 }
-.lg-table th { background: #f9fafb; }
-.lg-pill {
-  display: inline-block; border-radius: 999px; padding: 2px 10px; font-size: 12px; font-weight: bold;
+
+.lg-table th {
+  background: #2c2c2e;
+  color: #8e8e93;
+  font-weight: 600;
+  text-transform: uppercase;
+  font-size: 12px;
 }
-.lg-pill-ok { background: #d1fae5; color: #065f46; }
-.lg-pill-mid { background: #fef3c7; color: #92400e; }
-.lg-pill-bad { background: #fee2e2; color: #991b1b; }
+
+.lg-pill {
+  display: inline-block;
+  border-radius: 999px;
+  padding: 3px 10px;
+  font-size: 12px;
+  font-weight: 600;
+}
+
+.lg-pill-ok {
+  background: #09391c;
+  color: #30d158;
+}
+
+.lg-pill-mid {
+  background: #3a2e0a;
+  color: #ffd60a;
+}
+
+.lg-pill-bad {
+  background: #3a0d0d;
+  color: #ff453a;
+}
 
 @media screen and (max-width: 640px) {
-  .lg-card { width: 46%; }
-  .lg-brand { font-size: 24px; }
-  .lg-nav { float: none; margin-top: 10px; }
-  .lg-nav a { margin: 4px 6px 0 0; }
+  .lg-brand {
+    font-size: 20px;
+  }
+  .lg-nav {
+    float: none;
+    margin-top: 10px;
+    clear: both;
+  }
+  .lg-nav a {
+    margin: 4px 6px 4px 0;
+  }
 }
