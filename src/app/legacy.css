@@ -1,0 +1,295 @@
+/* -------------------------------------------------------------------------
+   Legacy Gateway — chrome styles.
+   STRICTLY iOS 9.3 WebKit-safe CSS: no grid, no custom properties, no calc,
+   no vw units, no flexbox-only layout. Layout uses block / inline-block /
+   floats so it renders identically on 2015 WebKit and modern engines.
+   ------------------------------------------------------------------------- */
+
+html {
+  -webkit-text-size-adjust: 100%;
+}
+
+body {
+  margin: 0;
+  background: #0b1020;
+  color: #1f2937;
+  font-family: -apple-system, "Helvetica Neue", Helvetica, Arial, sans-serif;
+}
+
+.lg-page {
+  min-height: 600px;
+  background: #f6f7f9;
+  padding-bottom: 80px;
+}
+
+/* ---- top band ---- */
+.lg-top {
+  background: #0b1020;
+  background: -webkit-linear-gradient(160deg, #0b1020 0%, #141b34 55%, #1d2748 100%);
+  background: linear-gradient(160deg, #0b1020 0%, #141b34 55%, #1d2748 100%);
+  border-bottom: 3px solid #f5b730;
+  color: #e5e7eb;
+  padding: 26px 24px 30px;
+}
+
+.lg-top-slim {
+  padding: 12px 24px;
+}
+
+.lg-brand {
+  margin: 0;
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: 30px;
+  font-weight: normal;
+  letter-spacing: 0.5px;
+  color: #fff;
+}
+
+.lg-brand b { color: #f5b730; font-weight: bold; }
+
+.lg-brand a { color: #fff; text-decoration: none; }
+
+.lg-tag {
+  margin: 8px 0 0;
+  color: #9aa4bf;
+  font-size: 14px;
+  max-width: 46em;
+  line-height: 1.5;
+}
+
+.lg-nav {
+  float: right;
+  margin-top: 6px;
+}
+
+.lg-nav a, .lg-nav .lg-chip {
+  display: inline-block;
+  margin-left: 8px;
+  padding: 8px 14px;
+  border: 1px solid #39415f;
+  border-radius: 999px;
+  color: #c7ceed;
+  font-size: 14px;
+  text-decoration: none;
+}
+
+.lg-nav a:hover { border-color: #f5b730; color: #f5b730; }
+
+.lg-clear { clear: both; }
+
+/* ---- url bar ---- */
+.lg-urlbar {
+  margin: 22px auto 0;
+  max-width: 720px;
+}
+
+.lg-urlbar .lg-in {
+  display: block;
+  width: 100%;
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+  font-size: 22px;
+  padding: 16px 18px;
+  border: 2px solid #39415f;
+  border-radius: 12px;
+  background: #fff;
+  color: #111;
+  -webkit-appearance: none;
+  outline: none;
+}
+
+.lg-row {
+  margin-top: 12px;
+  text-align: center;
+}
+
+.lg-btn {
+  display: inline-block;
+  font-size: 18px;
+  padding: 12px 22px;
+  border: 0;
+  border-radius: 10px;
+  background: #f5b730;
+  color: #221a05;
+  font-weight: bold;
+  text-decoration: none;
+  cursor: pointer;
+  -webkit-appearance: none;
+}
+
+.lg-btn:active { background: #d99e1e; }
+
+.lg-btn-blue { background: #0b5bd3; color: #fff; }
+
+.lg-sel {
+  font-size: 16px;
+  padding: 10px;
+  border-radius: 8px;
+  border: 1px solid #39415f;
+  background: #fff;
+  margin-left: 8px;
+  -webkit-appearance: menulist;
+}
+
+.lg-hint {
+  color: #8d96b2;
+  font-size: 13px;
+  margin-top: 10px;
+  text-align: center;
+}
+
+/* ---- content ---- */
+.lg-wrap {
+  max-width: 760px;
+  margin: 26px auto 0;
+  padding: 0 18px;
+}
+
+.lg-h2 {
+  font-family: Georgia, serif;
+  font-size: 22px;
+  color: #111827;
+  border-bottom: 1px solid #e5e7eb;
+  padding-bottom: 8px;
+  margin: 28px 0 14px;
+}
+
+.lg-cards {
+  margin: 0 -6px;
+  font-size: 0; /* kill inline-block whitespace */
+}
+
+.lg-card {
+  display: inline-block;
+  vertical-align: top;
+  width: 29.33%;
+  margin: 6px 1%;
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+  background: #fff;
+  border: 1px solid #e5e7eb;
+  border-radius: 10px;
+  padding: 14px 16px;
+  font-size: 15px;
+  text-decoration: none;
+  color: #111827;
+  -webkit-box-shadow: 0 1px 2px rgba(16, 24, 40, 0.06);
+  box-shadow: 0 1px 2px rgba(16, 24, 40, 0.06);
+}
+
+.lg-card:hover { border-color: #f5b730; }
+
+.lg-card b { display: block; font-size: 16px; margin-bottom: 4px; color: #0b5bd3; }
+.lg-card span { color: #6b7280; font-size: 13px; line-height: 1.4; display: block; }
+
+.lg-card-wide { width: 96%; }
+
+.lg-panel {
+  background: #fff;
+  border: 1px solid #e5e7eb;
+  border-radius: 10px;
+  padding: 18px 20px;
+  margin-bottom: 14px;
+  line-height: 1.6;
+}
+
+.lg-panel h3 { margin-top: 0; }
+
+.lg-note {
+  background: #fffbeb;
+  border: 1px solid #fcd34d;
+  border-radius: 8px;
+  padding: 10px 14px;
+  color: #92400e;
+  font-size: 14px;
+}
+
+/* ---- forms (legacy-safe: block layout, no flex) ---- */
+.lg-form { margin: 0; }
+
+.lg-field {
+  display: block;
+  margin-bottom: 14px;
+  font-size: 16px;
+  line-height: 1.5;
+}
+
+.lg-field input[type="checkbox"], .lg-field input[type="radio"] {
+  width: 22px;
+  height: 22px;
+  vertical-align: -5px;
+  margin-right: 8px;
+}
+
+.lg-field select {
+  font-size: 16px;
+  padding: 8px;
+  border-radius: 8px;
+  border: 1px solid #9ca3af;
+  margin-left: 8px;
+  -webkit-appearance: menulist;
+}
+
+.lg-field .lg-in-s {
+  width: 100%;
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+  font-size: 18px;
+  padding: 12px;
+  border: 1px solid #9ca3af;
+  border-radius: 8px;
+  margin-top: 6px;
+  -webkit-appearance: none;
+}
+
+/* ---- lists / tables ---- */
+.lg-list { list-style: none; margin: 0; padding: 0; }
+.lg-list li { border-bottom: 1px solid #eee; padding: 10px 2px; }
+.lg-list a { color: #0b5bd3; text-decoration: none; font-size: 17px; word-break: break-all; }
+.lg-list a:hover { text-decoration: underline; }
+.lg-list .lg-muted { color: #9ca3af; font-size: 13px; display: block; margin-top: 2px; }
+.lg-list form { display: inline; }
+.lg-linkbtn {
+  border: 0; background: none; color: #b91c1c; font-size: 14px; cursor: pointer;
+  padding: 4px 8px; text-decoration: underline; font-family: inherit;
+}
+.lg-linkbtn-save { color: #065f46; }
+
+/* ---- type ---- */
+.lg-small { font-size: 13px; color: #6b7280; }
+.lg-code {
+  font-family: Menlo, Consolas, monospace;
+  background: #f3f4f6;
+  padding: 1px 5px;
+  border-radius: 4px;
+  font-size: 13px;
+  word-break: break-all;
+}
+.lg-ok { color: #047857; }
+.lg-bad { color: #b91c1c; }
+.lg-warn { color: #b45309; }
+
+.lg-hr { border: 0; border-top: 1px solid #e5e7eb; margin: 22px 0; }
+
+/* ---- about page matrix ---- */
+.lg-table { width: 100%; border-collapse: collapse; font-size: 14px; }
+.lg-table th, .lg-table td {
+  border: 1px solid #e5e7eb;
+  text-align: left;
+  padding: 8px 10px;
+  vertical-align: top;
+}
+.lg-table th { background: #f9fafb; }
+.lg-pill {
+  display: inline-block; border-radius: 999px; padding: 2px 10px; font-size: 12px; font-weight: bold;
+}
+.lg-pill-ok { background: #d1fae5; color: #065f46; }
+.lg-pill-mid { background: #fef3c7; color: #92400e; }
+.lg-pill-bad { background: #fee2e2; color: #991b1b; }
+
+@media screen and (max-width: 640px) {
+  .lg-card { width: 46%; }
+  .lg-brand { font-size: 24px; }
+  .lg-nav { float: none; margin-top: 10px; }
+  .lg-nav a { margin: 4px 6px 0 0; }
+}
