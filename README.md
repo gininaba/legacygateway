@@ -7,6 +7,7 @@
   <img src="https://img.shields.io/badge/PostgreSQL-16-4169E1?style=for-the-badge&logo=postgresql&logoColor=white" alt="PostgreSQL" />
   <img src="https://img.shields.io/badge/Drizzle_ORM-0.45-C5F74F?style=for-the-badge&logo=drizzle&logoColor=black" alt="Drizzle ORM" />
   <img src="https://img.shields.io/badge/Node.js-20+-339933?style=for-the-badge&logo=nodedotjs&logoColor=white" alt="Node.js" />
+  <img src="https://img.shields.io/badge/License-MIT-blue?style=for-the-badge" alt="License" />
 </p>
 
 **The modern web, translated for a 2015 browser.** A server-side compatibility gateway that lets legacy devices (such as an iPad mini on **iOS 9.3.6** with legacy WebKit) browse the modern internet without jailbreaking and without requiring a 2015 engine to run modern 2026 JavaScript natively.
@@ -116,3 +117,10 @@ Open `http://localhost:3000` in your browser.
 - **DRM Video**: Encrypted streaming video (DASH/DRM) is unsupported. Direct MP4 files and standard HLS streams work natively.
 - **Anti-Bot Protections**: Datacenter IP blocking (Cloudflare CAPTCHA, hCaptcha) may deny requests regardless of User-Agent.
 - **File Uploads**: Blocked by default; downloads operate normally.
+
+---
+
+## License
+
+Distributed under the MIT License. See [`LICENSE`](./LICENSE) for full licensing details.
+
