@@ -78,5 +78,6 @@ export async function touchSession(sid: string): Promise<void> {
 
 export async function saveSettings(sid: string, settings: GatewaySettings): Promise<void> {
   await ensureSession(sid);
+  if (!db) return;
   await db.update(sessions).set({ settings, lastSeen: new Date() }).where(eq(sessions.id, sid));
 }

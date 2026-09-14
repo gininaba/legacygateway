@@ -1,4 +1,5 @@
 import { transformAsync } from "@babel/core";
+import babelPresetEnv from "@babel/preset-env";
 import { eq } from "drizzle-orm";
 import { db } from "@/db";
 import { cache } from "@/db/schema";
@@ -17,22 +18,21 @@ import { sha256 } from "../crypto";
  */
 export async function transpileJs(code: string, keyHint: string): Promise<string> {
   const key = "js:" + sha256(code);
-  try {
-    const hit = await db.select().from(cache).where(eq(cache.key, key)).limit(1);
-    if (hit.length) return Buffer.from(hit[0].body, "base64").toString("utf8");
-  } catch {
-    /* cache miss path */
+  if (db) {
+    try {
+      const hit = await db.select().from(cache).where(eq(cache.key, key)).limit(1);
+      if (hit.length) return Buffer.from(hit[0].body, "base64").toString("utf8");
+    } catch {
+      /* cache miss path */
+    }
   }
 
   let out = code;
   try {
-    // transformAsync is the explicit Promise-based API in Babel 8.
-    // (transform() became callback-based in Babel 8; transformSync still
-    // exists but blocks the event loop on large files.)
     const result = await transformAsync(code, {
       presets: [
         [
-          "@babel/preset-env",
+          babelPresetEnv,
           {
             targets: { safari: "9", ios: "9" },
             modules: false,
@@ -53,17 +53,19 @@ export async function transpileJs(code: string, keyHint: string): Promise<string
     return code; // leave untranspiled; the old engine will simply skip it
   }
 
-  try {
-    await db
-      .insert(cache)
-      .values({
-        key,
-        contentType: "application/javascript; charset=utf-8",
-        body: Buffer.from(out, "utf8").toString("base64"),
-      })
-      .onConflictDoNothing();
-  } catch {
-    /* cache write failure is not fatal */
+  if (db) {
+    try {
+      await db
+        .insert(cache)
+        .values({
+          key,
+          contentType: "application/javascript; charset=utf-8",
+          body: Buffer.from(out, "utf8").toString("base64"),
+        })
+        .onConflictDoNothing();
+    } catch {
+      /* cache write failure is not fatal */
+    }
   }
   return out;
 }
