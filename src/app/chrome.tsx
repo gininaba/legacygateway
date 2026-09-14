@@ -5,28 +5,36 @@ import type { ReactNode } from "react";
 
 export function Top(props: { slim?: boolean }) {
   return (
-    <div className={props.slim ? "lg-top lg-top-slim" : "lg-top"}>
-      <div className="lg-nav">
-        <a href="/">Home</a>
-        <a href="/history">History &amp; Bookmarks</a>
-        <a href="/settings">Settings</a>
-        <a href="/snap">Snapshot Mode</a>
-        <a href="/about">How it works</a>
+    <>
+      <div className={props.slim ? "lg-top lg-top-slim" : "lg-top"}>
+        <h1 className="lg-brand">
+          <a href="/">
+            Legacy<b>Gateway</b>
+          </a>
+        </h1>
+        <div className="lg-nav">
+          <a href="/">Home</a>
+          <a href="/history">History &amp; Bookmarks</a>
+          <a href="/settings">Settings</a>
+          <a href="/snap">Snapshot Mode</a>
+          <a href="/about">How it works</a>
+        </div>
+        <div className="lg-clear" />
       </div>
-      <h1 className="lg-brand">
-        <a href="/">
-          Legacy<b>Gateway</b>
-        </a>
-      </h1>
       {props.slim ? null : (
-        <p className="lg-tag">
-          The modern web, translated for a 2015 browser. Type an address — the gateway fetches it
-          with a modern TLS stack, rewrites what old WebKit can&apos;t digest, and serves it back
-          in a form your iPad mini understands.
-        </p>
+        <div className="lg-app-header">
+          <div className="lg-app-icon">LG</div>
+          <div className="lg-app-info">
+            <div className="lg-app-title">Legacy Gateway</div>
+            <div className="lg-app-ver">Version 1.0 — iOS 6–10 WebKit Gateway</div>
+            <div className="lg-app-desc">
+              The modern web, translated for a 2015 browser. Type an address or search term below to browse through the compatibility layer.
+            </div>
+          </div>
+          <div className="lg-clear" />
+        </div>
       )}
-      <div className="lg-clear" />
-    </div>
+    </>
   );
 }
 
@@ -57,8 +65,7 @@ export function UrlBar(props: { compact?: boolean }) {
         </form>
         {props.compact ? null : (
           <div className="lg-hint">
-            Plain-language search terms work too. Sites open through the compatibility layer —
-            links, images and forms keep working as you navigate.
+            In Cydia / Safari, paste or type any website address above to load it via Legacy Gateway.
           </div>
         )}
       </div>

@@ -12,10 +12,10 @@ export const dynamic = "force-dynamic";
 const QUICK: Array<{ name: string; url: string; note: string }> = [
   { name: "Wikipedia", url: "https://en.wikipedia.org/wiki/Main_Page", note: "Encyclopedia — works beautifully, even in Full mode" },
   { name: "DuckDuckGo", url: "https://html.duckduckgo.com/html/", note: "Search engine with a server-rendered HTML interface" },
-  { name: "Hacker News", url: "https://news.ycombinator.com/", note: "Tech news &amp; discussion — nearly native feel" },
+  { name: "Hacker News", url: "https://news.ycombinator.com/", note: "Tech news & discussion — nearly native feel" },
   { name: "Project Gutenberg", url: "https://www.gutenberg.org/", note: "70,000 free ebooks, readable on-page" },
-  { name: "GitHub", url: "https://github.com/trending", note: "Browse code &amp; repos (login is unlikely to survive)" },
-  { name: "Stack Overflow", url: "https://stackoverflow.com/questions", note: "Q&amp;A knowledge — reading works great" },
+  { name: "GitHub", url: "https://github.com/trending", note: "Browse code & repos (login is unlikely to survive)" },
+  { name: "Stack Overflow", url: "https://stackoverflow.com/questions", note: "Q&A knowledge — reading works great" },
   { name: "Weather", url: "https://wttr.in/", note: "Minimal forecast page" },
   { name: "BBC News", url: "https://www.bbc.com/news", note: "Real news site — best in Lite mode" },
   { name: "MDN Web Docs", url: "https://developer.mozilla.org/", note: "Web technology reference" },
@@ -53,7 +53,7 @@ export default async function Home({ searchParams }: { searchParams: Promise<Rec
 
         {savedLinks.length ? (
           <>
-            <h2 className="lg-h2">Your bookmarks</h2>
+            <h2 className="lg-h2">SAVED BOOKMARKS</h2>
             <div className="lg-cards">
               {savedLinks.map((b) => (
                 <a key={b.id} className="lg-card" href={makeProxyPath(new URL(b.url))}>
@@ -65,7 +65,7 @@ export default async function Home({ searchParams }: { searchParams: Promise<Rec
           </>
         ) : null}
 
-        <h2 className="lg-h2">Places that work well</h2>
+        <h2 className="lg-h2">PLACES THAT WORK WELL</h2>
         <div className="lg-cards">
           {QUICK.map((q) => (
             <a key={q.url} className="lg-card" href={makeProxyPath(new URL(q.url))}>
@@ -75,34 +75,53 @@ export default async function Home({ searchParams }: { searchParams: Promise<Rec
           ))}
         </div>
 
-        <h2 className="lg-h2">What this is</h2>
+        <h2 className="lg-h2">SYSTEM & REQUIREMENTS</h2>
         <div className="lg-panel">
+          <h3>Legacy Web Compatibility Layer</h3>
           <p>
             Your browser from 2015 can no longer speak to the modern web: its TLS is rejected, its
-            JavaScript engine can&apos;t parse today&apos;s code, and half the CSS it receives is
-            from the future. This gateway sits in the middle and <b>translates</b>:
+            JavaScript engine cannot parse today&apos;s code, and half the CSS it receives is from the future.
+            This gateway sits in the middle and translates:
           </p>
-          <p>
-            iPad&nbsp;Safari&nbsp;&rarr; <b>LegacyGateway (compatibility layer)</b> &rarr; the modern internet
+          <p className="lg-code">
+            iPad Safari &rarr; LegacyGateway (Compatibility Gateway) &rarr; Modern Web (TLS 1.3)
           </p>
           <p className="lg-small">
-            Current mode: <b>{settings.mode === "lite" ? "Lite (guaranteed-readable rendering)" : "Full (rewritten real site)"}</b>
+            Current Mode: <b>{settings.mode === "lite" ? "Lite (guaranteed-readable rendering)" : "Full (rewritten real site)"}</b>
             {" — "}
-            images {settings.images ? "re-encoded for old WebKit" : "off"}, JS transpilation{" "}
+            Images {settings.images ? "re-encoded for old WebKit" : "off"}, JS transpilation{" "}
             {settings.js ? "on (experimental)" : "off"}. Change in <a href="/settings">Settings</a>.
-            For truly impossible sites (Gmail-class apps), try{" "}
-            <a href="/snap">Snapshot Mode</a>: a real Chrome running in the cloud, one still frame
-            at a time.{" "}
-            {CONFIG.browserlessToken ? (
-              <span className="lg-ok">Remote browser is configured.</span>
-            ) : (
-              <span className="lg-warn">Remote browser not configured (needs BROWSERLESS_TOKEN).</span>
-            )}
           </p>
           <p className="lg-small">
-            Honest scope: <a href="/about">read the feasibility report</a> — what works, what
-            cannot work, and why.
+            Snapshot Mode:{" "}
+            {CONFIG.browserlessToken ? (
+              <span className="lg-ok">Remote browser configured (Browserless).</span>
+            ) : (
+              <span className="lg-warn">Remote browser not configured (set BROWSERLESS_TOKEN).</span>
+            )}
+            {" — "}
+            <a href="/about">Read full feasibility report</a>.
           </p>
+        </div>
+
+        <h2 className="lg-h2">QUICK LINKS</h2>
+        <div className="lg-cards">
+          <a className="lg-card" href="/history">
+            <b>History &amp; Bookmarks</b>
+            <span>View past sessions and saved pages</span>
+          </a>
+          <a className="lg-card" href="/settings">
+            <b>Compatibility Settings</b>
+            <span>Toggle Lite mode, image quality, and JS transpilation</span>
+          </a>
+          <a className="lg-card" href="/snap">
+            <b>Snapshot Mode</b>
+            <span>Remote Chromium rendering for complex SPAs</span>
+          </a>
+          <a className="lg-card" href="/about">
+            <b>How It Works</b>
+            <span>12-category compatibility matrix and technical analysis</span>
+          </a>
         </div>
       </Wrap>
     </>

@@ -1,5 +1,5 @@
 /* -------------------------------------------------------------------------
-   Legacy Gateway — iOS 9.3 WebKit-safe Dark UI (Surf Repository / Cydia style).
+   Legacy Gateway — Classic iOS Light Grouped Theme (Cydia / Surf Repository style).
    STRICTLY iOS 9.3 WebKit-safe CSS: no grid, no CSS custom properties (var),
    no calc(), no vw/vh units.
    Layout uses block / inline-block / floats for 100% fidelity on 2015 WebKit.
@@ -11,44 +11,50 @@ html {
 
 body {
   margin: 0;
-  background: #121214;
-  color: #e5e5ea;
+  background: #c5cdd4;
+  background: -webkit-linear-gradient(top, #cbd3da 0%, #c5cdd4 100%);
+  background: linear-gradient(to bottom, #cbd3da 0%, #c5cdd4 100%);
+  color: #000000;
   font-family: -apple-system, "Helvetica Neue", Helvetica, Arial, sans-serif;
 }
 
 .lg-page {
   min-height: 600px;
-  background: #121214;
+  background: #c5cdd4;
   padding-bottom: 80px;
 }
 
-/* ---- iOS 9 glossy / dark navigation bar ---- */
+/* ---- Classic iOS Glossy Navigation Bar ---- */
 .lg-top {
-  background: #1c1c1e;
-  background: -webkit-linear-gradient(top, #2c2c2e 0%, #1c1c1e 100%);
-  background: linear-gradient(to bottom, #2c2c2e 0%, #1c1c1e 100%);
-  border-bottom: 1px solid #3a3a3c;
+  background: #2c4763;
+  background: -webkit-linear-gradient(top, #436485 0%, #2c4763 50%, #1e354d 51%, #264361 100%);
+  background: linear-gradient(to bottom, #436485 0%, #2c4763 50%, #1e354d 51%, #264361 100%);
+  border-bottom: 1px solid #172738;
   color: #ffffff;
-  padding: 16px 20px;
+  padding: 12px 16px;
+  -webkit-box-shadow: 0 1px 3px rgba(0, 0, 0, 0.4);
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.4);
+  text-align: center;
+  position: relative;
 }
 
 .lg-top-slim {
-  padding: 10px 20px;
+  padding: 8px 16px;
 }
 
 .lg-brand {
   margin: 0;
   font-family: -apple-system, "Helvetica Neue", Helvetica, Arial, sans-serif;
-  font-size: 22px;
-  font-weight: 700;
-  letter-spacing: -0.3px;
+  font-size: 19px;
+  font-weight: bold;
   color: #ffffff;
-  float: left;
+  text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.6);
+  letter-spacing: -0.2px;
 }
 
 .lg-brand b {
-  color: #0a84ff;
-  font-weight: 700;
+  color: #8bbcf1;
+  font-weight: bold;
 }
 
 .lg-brand a {
@@ -56,37 +62,31 @@ body {
   text-decoration: none;
 }
 
-.lg-tag {
-  margin: 10px 0 0;
-  color: #8e8e93;
-  font-size: 13px;
-  max-width: 52em;
-  line-height: 1.45;
-  clear: both;
-  padding-top: 6px;
-}
-
 .lg-nav {
-  float: right;
-  margin-top: 2px;
+  margin-top: 8px;
+  text-align: center;
 }
 
 .lg-nav a, .lg-nav .lg-chip {
   display: inline-block;
-  margin-left: 6px;
-  padding: 6px 12px;
-  border: 1px solid #3a3a3c;
-  border-radius: 8px;
-  background: #2c2c2e;
-  color: #0a84ff;
-  font-size: 13px;
-  font-weight: 600;
+  margin: 3px 3px;
+  padding: 5px 11px;
+  border: 1px solid #182c40;
+  border-radius: 6px;
+  -webkit-border-radius: 6px;
+  background: -webkit-linear-gradient(top, #38597a 0%, #1f364e 100%);
+  background: linear-gradient(to bottom, #38597a 0%, #1f364e 100%);
+  color: #ffffff;
+  font-size: 12px;
+  font-weight: bold;
   text-decoration: none;
+  text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.5);
 }
 
 .lg-nav a:hover, .lg-nav a.active {
-  background: #0a84ff;
-  border-color: #0a84ff;
+  background: -webkit-linear-gradient(top, #007aff 0%, #0056b3 100%);
+  background: linear-gradient(to bottom, #007aff 0%, #0056b3 100%);
+  border-color: #003d80;
   color: #ffffff;
 }
 
@@ -94,10 +94,66 @@ body {
   clear: both;
 }
 
-/* ---- URL Bar / Search ---- */
+/* ---- App Header Section (Surf / Cydia App Icon & Title Style) ---- */
+.lg-app-header {
+  margin: 18px auto 6px;
+  max-width: 680px;
+  padding: 0 16px;
+}
+
+.lg-app-icon {
+  width: 54px;
+  height: 54px;
+  float: left;
+  margin-right: 14px;
+  border-radius: 12px;
+  -webkit-border-radius: 12px;
+  background: -webkit-linear-gradient(top, #007aff 0%, #004080 100%);
+  background: linear-gradient(to bottom, #007aff 0%, #004080 100%);
+  border: 1px solid rgba(0, 0, 0, 0.2);
+  -webkit-box-shadow: 0 2px 4px rgba(0, 0, 0, 0.25);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.25);
+  color: #ffffff;
+  text-align: center;
+  line-height: 54px;
+  font-size: 26px;
+  font-weight: bold;
+}
+
+.lg-app-info {
+  overflow: hidden;
+}
+
+.lg-app-title {
+  font-size: 20px;
+  font-weight: bold;
+  color: #000000;
+  margin: 0 0 2px;
+}
+
+.lg-app-ver {
+  font-size: 13px;
+  color: #555555;
+  margin-bottom: 2px;
+}
+
+.lg-app-desc {
+  font-size: 13px;
+  color: #555555;
+  line-height: 1.35;
+}
+
+/* ---- Content Container ---- */
+.lg-wrap {
+  max-width: 680px;
+  margin: 10px auto 0;
+  padding: 0 16px;
+}
+
+/* ---- URL Bar / Search Box ---- */
 .lg-urlbar {
-  margin: 16px auto 0;
-  max-width: 720px;
+  margin: 14px auto 0;
+  max-width: 680px;
 }
 
 .lg-urlbar .lg-in {
@@ -105,18 +161,22 @@ body {
   width: 100%;
   -webkit-box-sizing: border-box;
   box-sizing: border-box;
-  font-size: 17px;
-  padding: 14px 16px;
-  border: 1px solid #3a3a3c;
-  border-radius: 12px;
-  background: #1c1c1e;
-  color: #ffffff;
+  font-size: 16px;
+  font-family: Menlo, Consolas, monospace;
+  padding: 12px 14px;
+  border: 1px solid #9aa5b1;
+  border-radius: 8px;
+  -webkit-border-radius: 8px;
+  background: #ffffff;
+  color: #000000;
   -webkit-appearance: none;
   outline: none;
+  -webkit-box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.12);
+  box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.12);
 }
 
 .lg-urlbar .lg-in:focus {
-  border-color: #0a84ff;
+  border-color: #007aff;
 }
 
 .lg-row {
@@ -126,85 +186,87 @@ body {
 
 .lg-btn {
   display: inline-block;
-  font-size: 16px;
-  padding: 10px 20px;
-  border: 0;
-  border-radius: 10px;
-  background: #0a84ff;
+  font-size: 15px;
+  padding: 9px 20px;
+  border: 1px solid #17549c;
+  border-radius: 8px;
+  -webkit-border-radius: 8px;
+  background: -webkit-linear-gradient(top, #4c87c7 0%, #2062ac 50%, #17549c 51%, #1d5fa7 100%);
+  background: linear-gradient(to bottom, #4c87c7 0%, #2062ac 50%, #17549c 51%, #1d5fa7 100%);
   color: #ffffff;
-  font-weight: 600;
+  font-weight: bold;
+  text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.4);
   text-decoration: none;
   cursor: pointer;
   -webkit-appearance: none;
 }
 
 .lg-btn:active {
-  background: #0066cc;
+  background: #17549c;
 }
 
 .lg-btn-blue {
-  background: #0a84ff;
+  background: #007aff;
   color: #ffffff;
 }
 
 .lg-sel {
-  font-size: 15px;
-  padding: 10px 12px;
-  border-radius: 10px;
-  border: 1px solid #3a3a3c;
-  background: #1c1c1e;
-  color: #0a84ff;
-  font-weight: 600;
+  font-size: 14px;
+  padding: 8px 10px;
+  border-radius: 8px;
+  -webkit-border-radius: 8px;
+  border: 1px solid #9aa5b1;
+  background: #ffffff;
+  color: #2062ac;
+  font-weight: bold;
   margin-left: 8px;
   -webkit-appearance: menulist;
 }
 
 .lg-hint {
-  color: #8e8e93;
-  font-size: 13px;
-  margin-top: 8px;
+  color: #546171;
+  font-size: 12px;
+  margin-top: 6px;
   text-align: center;
+  text-shadow: 0 1px 0 rgba(255, 255, 255, 0.6);
 }
 
-/* ---- Content Container ---- */
-.lg-wrap {
-  max-width: 760px;
-  margin: 20px auto 0;
-  padding: 0 16px;
-}
-
-/* ---- Grouped Section Headers (iOS Style) ---- */
+/* ---- Classic iOS Inset Section Headers (Cydia / Surf Style) ---- */
 .lg-h2 {
   font-family: -apple-system, "Helvetica Neue", Helvetica, Arial, sans-serif;
   font-size: 12px;
-  font-weight: 600;
+  font-weight: bold;
   text-transform: uppercase;
-  letter-spacing: 0.8px;
-  color: #8e8e93;
+  letter-spacing: 0.6px;
+  color: #4c5663;
+  text-shadow: 0 1px 0 rgba(255, 255, 255, 0.7);
   border-bottom: none;
   padding-bottom: 0;
-  margin: 24px 8px 8px;
+  margin: 18px 8px 6px;
 }
 
-/* ---- iOS Grouped Cards / Lists ---- */
+/* ---- Classic iOS Grouped Inset Containers ---- */
 .lg-cards {
-  margin: 0;
-  background: #1c1c1e;
-  border: 1px solid #2c2c2e;
-  border-radius: 12px;
+  margin: 0 0 14px;
+  background: #ffffff;
+  border: 1px solid #a7b0b8;
+  border-radius: 10px;
+  -webkit-border-radius: 10px;
   overflow: hidden;
+  -webkit-box-shadow: 0 1px 2px rgba(0, 0, 0, 0.08);
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.08);
 }
 
 .lg-card {
   display: block;
   -webkit-box-sizing: border-box;
   box-sizing: border-box;
-  background: #1c1c1e;
-  border-bottom: 1px solid #2c2c2e;
-  padding: 14px 16px;
+  background: #ffffff;
+  border-bottom: 1px solid #e0e5e9;
+  padding: 12px 16px;
   font-size: 15px;
   text-decoration: none;
-  color: #ffffff;
+  color: #000000;
   position: relative;
 }
 
@@ -213,27 +275,27 @@ body {
 }
 
 .lg-card:active {
-  background: #2c2c2e;
+  background: #d9e0e7;
 }
 
 .lg-card b {
   display: block;
   font-size: 16px;
-  font-weight: 600;
-  margin-bottom: 3px;
-  color: #ffffff;
-  padding-right: 20px;
+  font-weight: bold;
+  margin-bottom: 2px;
+  color: #000000;
+  padding-right: 80px;
 }
 
 .lg-card span {
-  color: #8e8e93;
+  color: #66707a;
   font-size: 13px;
-  line-height: 1.4;
+  line-height: 1.35;
   display: block;
-  padding-right: 20px;
+  padding-right: 80px;
 }
 
-/* Right Chevron (iOS List Arrow) */
+/* Right Subtitle Tag & Chevron (iOS Style: e.g. "iOS 6-10 ›") */
 .lg-card::after {
   content: "›";
   position: absolute;
@@ -241,8 +303,8 @@ body {
   top: 50%;
   margin-top: -14px;
   font-size: 22px;
-  font-weight: 400;
-  color: #636366;
+  font-weight: bold;
+  color: #8e98a2;
 }
 
 .lg-card-wide {
@@ -251,30 +313,34 @@ body {
 
 /* ---- Grouped Panels ---- */
 .lg-panel {
-  background: #1c1c1e;
-  border: 1px solid #2c2c2e;
-  border-radius: 12px;
-  padding: 18px 20px;
-  margin-bottom: 16px;
-  line-height: 1.55;
-  color: #e5e5ea;
+  background: #ffffff;
+  border: 1px solid #a7b0b8;
+  border-radius: 10px;
+  -webkit-border-radius: 10px;
+  padding: 16px 18px;
+  margin-bottom: 14px;
+  line-height: 1.5;
+  color: #000000;
+  -webkit-box-shadow: 0 1px 2px rgba(0, 0, 0, 0.08);
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.08);
 }
 
 .lg-panel h3 {
   margin-top: 0;
-  font-size: 17px;
-  font-weight: 600;
-  color: #ffffff;
+  font-size: 16px;
+  font-weight: bold;
+  color: #000000;
 }
 
 .lg-note {
-  background: #2c2410;
-  border: 1px solid #6b5114;
-  border-radius: 10px;
-  padding: 12px 16px;
-  color: #ffd60a;
-  font-size: 14px;
-  margin-bottom: 14px;
+  background: #fffbe6;
+  border: 1px solid #e6d38e;
+  border-radius: 8px;
+  -webkit-border-radius: 8px;
+  padding: 10px 14px;
+  color: #735c0f;
+  font-size: 13px;
+  margin-bottom: 12px;
 }
 
 /* ---- Forms ---- */
@@ -284,30 +350,32 @@ body {
 
 .lg-field {
   display: block;
-  margin-bottom: 14px;
-  font-size: 15px;
-  line-height: 1.5;
-  color: #e5e5ea;
+  margin-bottom: 12px;
+  font-size: 14px;
+  line-height: 1.45;
+  color: #000000;
 }
 
 .lg-field b {
-  color: #ffffff;
+  color: #000000;
 }
 
 .lg-field input[type="checkbox"], .lg-field input[type="radio"] {
-  width: 20px;
-  height: 20px;
+  width: 18px;
+  height: 18px;
   vertical-align: -3px;
   margin-right: 8px;
 }
 
 .lg-field select {
-  font-size: 15px;
-  padding: 8px;
-  border-radius: 8px;
-  border: 1px solid #3a3a3c;
-  background: #2c2c2e;
-  color: #0a84ff;
+  font-size: 14px;
+  padding: 6px 8px;
+  border-radius: 6px;
+  -webkit-border-radius: 6px;
+  border: 1px solid #9aa5b1;
+  background: #ffffff;
+  color: #2062ac;
+  font-weight: bold;
   margin-left: 8px;
   -webkit-appearance: menulist;
 }
@@ -316,29 +384,36 @@ body {
   width: 100%;
   -webkit-box-sizing: border-box;
   box-sizing: border-box;
-  font-size: 16px;
-  padding: 12px;
-  border: 1px solid #3a3a3c;
-  border-radius: 10px;
-  background: #2c2c2e;
-  color: #ffffff;
-  margin-top: 6px;
+  font-size: 15px;
+  font-family: Menlo, Consolas, monospace;
+  padding: 10px 12px;
+  border: 1px solid #9aa5b1;
+  border-radius: 8px;
+  -webkit-border-radius: 8px;
+  background: #ffffff;
+  color: #000000;
+  margin-top: 4px;
   -webkit-appearance: none;
+  -webkit-box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.12);
+  box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.12);
 }
 
 /* ---- Lists / Tables ---- */
 .lg-list {
   list-style: none;
-  margin: 0;
+  margin: 0 0 14px;
   padding: 0;
-  background: #1c1c1e;
-  border: 1px solid #2c2c2e;
-  border-radius: 12px;
+  background: #ffffff;
+  border: 1px solid #a7b0b8;
+  border-radius: 10px;
+  -webkit-border-radius: 10px;
   overflow: hidden;
+  -webkit-box-shadow: 0 1px 2px rgba(0, 0, 0, 0.08);
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.08);
 }
 
 .lg-list li {
-  border-bottom: 1px solid #2c2c2e;
+  border-bottom: 1px solid #e0e5e9;
   padding: 12px 16px;
 }
 
@@ -347,10 +422,10 @@ body {
 }
 
 .lg-list a {
-  color: #0a84ff;
+  color: #007aff;
   text-decoration: none;
-  font-size: 16px;
-  font-weight: 500;
+  font-size: 15px;
+  font-weight: bold;
   word-break: break-all;
 }
 
@@ -359,10 +434,10 @@ body {
 }
 
 .lg-list .lg-muted {
-  color: #8e8e93;
-  font-size: 13px;
+  color: #66707a;
+  font-size: 12px;
   display: block;
-  margin-top: 3px;
+  margin-top: 2px;
 }
 
 .lg-list form {
@@ -372,110 +447,114 @@ body {
 .lg-linkbtn {
   border: 0;
   background: none;
-  color: #ff453a;
-  font-size: 14px;
+  color: #cc0000;
+  font-size: 13px;
   cursor: pointer;
-  padding: 4px 8px;
+  padding: 2px 4px;
   text-decoration: underline;
   font-family: inherit;
 }
 
 .lg-linkbtn-save {
-  color: #30d158;
+  color: #008000;
 }
 
 /* ---- Type Utilities ---- */
 .lg-small {
-  font-size: 13px;
-  color: #8e8e93;
+  font-size: 12px;
+  color: #546171;
+  text-shadow: 0 1px 0 rgba(255, 255, 255, 0.6);
 }
 
 .lg-code {
   font-family: Menlo, Consolas, monospace;
-  background: #2c2c2e;
-  color: #30d158;
-  padding: 2px 6px;
-  border-radius: 6px;
-  font-size: 13px;
+  background: #eef2f5;
+  color: #2062ac;
+  padding: 2px 5px;
+  border-radius: 4px;
+  -webkit-border-radius: 4px;
+  font-size: 12px;
+  border: 1px solid #cbd3da;
   word-break: break-all;
 }
 
 .lg-ok {
-  color: #30d158;
+  color: #008000;
+  font-weight: bold;
 }
 
 .lg-bad {
-  color: #ff453a;
+  color: #cc0000;
+  font-weight: bold;
 }
 
 .lg-warn {
-  color: #ffd60a;
+  color: #b36b00;
+  font-weight: bold;
 }
 
 .lg-hr {
   border: 0;
-  border-top: 1px solid #2c2c2e;
-  margin: 18px 0;
+  border-top: 1px solid #e0e5e9;
+  margin: 14px 0;
 }
 
 /* ---- Table Styles ---- */
 .lg-table {
   width: 100%;
   border-collapse: collapse;
-  font-size: 14px;
-  background: #1c1c1e;
-  border-radius: 10px;
+  font-size: 13px;
+  background: #ffffff;
+  border-radius: 8px;
+  -webkit-border-radius: 8px;
   overflow: hidden;
+  border: 1px solid #a7b0b8;
 }
 
 .lg-table th, .lg-table td {
-  border: 1px solid #2c2c2e;
+  border: 1px solid #e0e5e9;
   text-align: left;
-  padding: 10px 12px;
+  padding: 8px 10px;
   vertical-align: top;
 }
 
 .lg-table th {
-  background: #2c2c2e;
-  color: #8e8e93;
-  font-weight: 600;
+  background: #eef2f5;
+  color: #4c5663;
+  font-weight: bold;
   text-transform: uppercase;
-  font-size: 12px;
+  font-size: 11px;
 }
 
 .lg-pill {
   display: inline-block;
   border-radius: 999px;
-  padding: 3px 10px;
-  font-size: 12px;
-  font-weight: 600;
+  padding: 2px 8px;
+  font-size: 11px;
+  font-weight: bold;
 }
 
 .lg-pill-ok {
-  background: #09391c;
-  color: #30d158;
+  background: #e2f7e2;
+  color: #008000;
 }
 
 .lg-pill-mid {
-  background: #3a2e0a;
-  color: #ffd60a;
+  background: #fff3d6;
+  color: #b36b00;
 }
 
 .lg-pill-bad {
-  background: #3a0d0d;
-  color: #ff453a;
+  background: #ffe6e6;
+  color: #cc0000;
 }
 
 @media screen and (max-width: 640px) {
   .lg-brand {
-    font-size: 20px;
-  }
-  .lg-nav {
-    float: none;
-    margin-top: 10px;
-    clear: both;
+    font-size: 17px;
   }
   .lg-nav a {
-    margin: 4px 6px 4px 0;
+    padding: 4px 8px;
+    font-size: 11px;
   }
 }
