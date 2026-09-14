@@ -70,15 +70,21 @@ This document outlines the internal routing structure and API endpoints provided
 - **Response**: Sets session authentication cookie and redirects to `/`.
 
 ### `GET /settings` / `POST /settings`
-- **Description**: Gateway user preferences configuration.
-- **Settings Controlled**:
-  - Default search engine
-  - Image optimization quality
-  - JavaScript transpilation toggle
-  - Cookie jar clearing
+- **Description**: Render and update Gateway compatibility settings and session preferences.
+- **Form Parameters (POST)**:
+  - `mode`: Rendering mode (`full` | `lite`). Default: `full`.
+  - `images`: Re-encode images flag (`on` / `true` | omitted/`false`). Default: `true`.
+  - `imw`: Maximum image width in pixels (`480` to `2048`). Default: `1100`.
+  - `js`: Experimental Babel ES5 transpilation toggle (`on` / `true` | omitted/`false`). Default: `false`.
+  - `toolbar`: Injected bottom gateway toolbar toggle (`on` / `true` | omitted/`false`). Default: `true`.
+  - `action`: Action indicator (`wipe` to clear all session cookies, history, and bookmarks).
+- **Behavior**:
+  - Updates the `settings` JSONB field in `lg_sessions` for the caller's session ID (`lgs`).
+  - If `action=wipe` is submitted, deletes all session history, saved bookmarks, and encrypted cookie jar entries for the active session.
 
 ### `GET /history`
-- **Description**: Displays browsing history for the current session.
+- **Description**: Displays browsing history for the current session stored in PostgreSQL.
 
 ### `GET /bookmark`
 - **Description**: Manage user bookmarks saved within the current gateway session.
+

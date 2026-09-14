@@ -70,8 +70,10 @@ Used for complex Single Page Applications (SPAs) or web applications heavy in mo
 
 Legacy Gateway utilizes PostgreSQL (managed via Drizzle ORM) for persistence:
 
-- **`sessions`**: Tracks active client session identifiers and creation timestamps.
-- **`cookies`**: Stores encrypted cookie jars per session and per domain (encrypted at rest with AES-256-GCM using `LG_SECRET`).
-- **`cache`**: Stores cached transpiled JavaScript files and temporary snapshot screenshot frames to minimize upstream compute and latency.
+- **`sessions` (`lg_sessions`)**: Tracks active client session identifiers (`id`), creation and `lastSeen` timestamps, and JSONB `settings` (`GatewaySettings`: mode, images, js, toolbar, max image width `imw`, quality). Stores AES-256-GCM encrypted cookie jars per session (`jar`).
+- **`history` (`lg_history`)**: Stores server-side browsing history per session ID (`sessionId`, `url`, `title`, `mode`, `createdAt`).
+- **`bookmarks` (`lg_bookmarks`)**: Stores saved bookmarks per session ID (`sessionId`, `url`, `title`, `createdAt`).
+- **`cache` (`lg_cache`)**: Stores cached transpiled JavaScript files and temporary snapshot screenshot frames (`key`, `contentType`, `body`, `createdAt`) to minimize upstream compute and latency.
 
-Schema definitions reside in `src/db/schema.ts`.
+Schema definitions reside in [`src/db/schema.ts`](file:///Volumes/1TB%20Graphics%20SSD/AIPOS/legacy_gateway/src/db/schema.ts).
+

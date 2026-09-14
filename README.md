@@ -27,13 +27,67 @@ Read [`REPORT.md`](./REPORT.md) for the full feasibility analysis (what works, w
 - **Charset Upgrade**: Encodings such as Shift_JIS, GB2312, and Windows-125x are converted to UTF-8.
 - **Image Rescue**: Formats like WebP and AVIF are converted to JPEG or PNG via `sharp`, with image width capped for 512MB RAM devices. GIF and SVG pass through intact.
 - **Rendering Modes**:
-  - **Full Mode**: Rewritten modern website preserving native layouts.
-  - **Lite Mode**: Strips all CSS and JavaScript, rendering clean, re-typeset markup.
+  - **Full Mode**: Rewritten modern website preserving native layouts. Best for Wikipedia, GitHub, blogs, and documentation.
+  - **Lite Mode**: Strips all site CSS and JavaScript, rendering clean, re-typeset markup. Guaranteed-readable; best for heavy news sites.
   - **Snapshot Mode**: Executes complex Single Page Applications (SPAs) inside a cloud Chromium instance and returns tap-targeted, interactive screenshot streams.
+- **Image Rescue & Optimization**: Formats like WebP and AVIF are re-encoded to JPEG or PNG via `sharp`, with image width capped (e.g. 1100 px) to prevent out-of-memory crashes on 512MB RAM devices. Can be toggled off to save processing time and memory.
 - **Experimental JS Rescue**: Babel `preset-env` targeting Safari 9 plus `core-js` and `whatwg-fetch` polyfills transpile modern JavaScript down to ES5. Results are cached in PostgreSQL.
-- **Server-Side Cookie Jars**: Sessions and logins are maintained server-side and encrypted at rest using AES-256-GCM (`LG_SECRET`) in PostgreSQL.
+- **Gateway Toolbar**: Optional floating toolbar injected at the bottom of proxied pages for easy navigation.
+- **Server-Side Cookie Jars & Session Privacy**: Cookies, settings, and browsing history live server-side under an anonymous session ID (`lgs`) and never touch Safari's local storage. Sessions are encrypted at rest using AES-256-GCM (`LG_SECRET`) in PostgreSQL. Includes a one-click session wipe (`Wipe my session data`).
 - **Security Guards**: SSRF defense with DNS-pinned private IP rejection, optional access gate key (`LG_GATE_KEY`), rate limiting, and domain allowlists.
 - **ES0-Safe UI**: The gateway interface is server-rendered HTML with plain forms and zero client JavaScript required.
+
+---
+
+## Compatibility Settings
+
+<p align="center">
+  <img src="./docs/screenshots/compatibility_settings.png" alt="Legacy Gateway Compatibility Settings" width="650" />
+</p>
+
+Legacy Gateway provides configurable per-session settings accessible via `/settings`:
+
+| Setting | Options / Values | Description |
+|---|---|---|
+| **Rendering Mode** | `Full mode` / `Lite mode` | Choose `Full mode` for layout preservation or `Lite mode` for stripped CSS/JS re-typeset text. |
+| **Images** | `Enabled` / `Disabled` | Re-encodes WebP/AVIF to JPEG/PNG. Disable to save server processing time and client memory. |
+| **Max Image Width** | `480 px` – `2048 px` (Default: `1100 px`) | Caps image dimensions to fit legacy screens and save memory. |
+| **JavaScript (Experimental)** | `Enabled` / `Disabled` | Transpiles site JS down to ES5 (Babel $\rightarrow$ Safari 9) and injects polyfills. |
+| **Gateway Toolbar** | `Enabled` / `Disabled` | Shows or hides the gateway control bar at the bottom of proxied pages. |
+| **Session Wipe** | `Wipe my session data` link | Clears cookies, history, and bookmarks stored in PostgreSQL under the session ID. |
+
+---
+
+## Omnibox & Search Integration
+
+Enter any web URL or search term directly into the gateway address bar on the home page or navigation bar. The gateway supports redirecting queries through configurable search engines:
+
+- **DuckDuckGo** (Default): Search engine with a server-rendered HTML interface.
+- **Google**: Standard web search.
+- **Wikipedia**: Direct search across encyclopedia entries.
+- **Bing**: General web search.
+
+---
+
+## Places That Work Well
+
+<p align="center">
+  <img src="./docs/screenshots/home_places_that_work_well.png" alt="Legacy Gateway Home Page & Curated Destinations" width="650" />
+</p>
+
+The gateway has been tested and optimized for key destinations across the web:
+
+| Site | Recommended Mode | Experience / Notes |
+|---|---|---|
+| **Wikipedia** | Full mode | Works beautifully; layout and media render cleanly. |
+| **DuckDuckGo** | Full mode | Light HTML search interface works natively. |
+| **Hacker News** | Full mode | Tech news & discussion with a nearly native feel. |
+| **Project Gutenberg** | Full mode | 70,000+ free ebooks, easily readable on-page. |
+| **GitHub** | Full mode | Browse code & repositories (login unlikely to survive complex auth). |
+| **Stack Overflow** | Full mode | Q&A reading works great. |
+| **Weather** | Full mode | Minimal weather forecast display. |
+| **BBC News** | Lite mode | Heavy modern news site — renders best in Lite mode. |
+| **MDN Web Docs** | Full mode | Web technology reference documentation. |
 
 ---
 
